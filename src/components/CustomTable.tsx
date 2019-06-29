@@ -23,11 +23,11 @@ export const CustomTableHead: React.FC = () => {
         <TableHead>
             <TableRow>
                 <TableCell>
-                    <Typography align="center"> <b> Version <br /> (TX ID) </b> </Typography>
+                    <Typography align="center"> <b> Version <br /> (Tx Height) </b> </Typography>
                 </TableCell>
 
                 <TableCell>
-                    <Typography align="center"> <b> Expiration <br /> Date (UTC) </b></Typography>
+                    <Typography align="center"> <b> Expiration <br /> Date </b></Typography>
                 </TableCell>
 
                 <TableCell>

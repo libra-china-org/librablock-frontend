@@ -23,7 +23,7 @@ const TransactionDetail: React.SFC<RouteComponentProps<Identifiable>> = ((props)
         ['Source', (<Link href={`/address/${transaction.from}`}>{transaction.from}</Link>)],
         ['Destination', (<Link href={`/address/${transaction.to}`}>{transaction.to}</Link>)],
         ['Type', transaction.type],
-        ['Amount Transferred', transaction.displayAmount()],
+        ['Amount Transferred', transaction.displayAmount() + ' Libra'],
         ['Gas Price', transaction.gasPrice],
         ['Max Gas', transaction.maxGas],
         ['Sequence Number', transaction.sequence],

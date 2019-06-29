@@ -45,7 +45,7 @@ const AddressDetail: React.SFC<RouteComponentProps<Identifiable>> = ((props) => 
 
                         <TableRow>
                             <TableCell>Balance</TableCell>
-                            <TableCell>{account.balance*1.0/1000000}</TableCell>
+                            <TableCell>{account.balance*1.0/1000000} Libra</TableCell>
                         </TableRow>
 
                         <TableRow>

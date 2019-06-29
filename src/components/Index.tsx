@@ -99,7 +99,9 @@ const Index: React.FC = () => {
         </Box>
   
         <Box marginTop="40px">
-          <Typography style={{marginTop:"20px",marginBottom:"20px"}} color="primary" variant="h4" align="center">All Transcations</Typography>
+          <Typography style={{marginTop:"20px",marginBottom:"20px"}} color="primary" variant="h4" align="center">
+            Latest Transactions
+          </Typography>
 
           <Card>
             <Box>
