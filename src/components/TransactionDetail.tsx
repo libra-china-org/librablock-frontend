@@ -3,6 +3,7 @@ import { Container, Typography, Table, TableHead, TableRow, TableCell, TableBody
 import { RouteComponentProps } from "react-router-dom";
 import Transcation from "../models/Transaction"
 import API from '../utils/api';
+import { formatDateTime } from '../utils/format'
 
 interface Identifiable {id: string; }
 
@@ -17,8 +18,8 @@ const TransactionDetail: React.SFC<RouteComponentProps<Identifiable>> = ((props)
     }, [])
 
     let arr = [
-        ['version', props.match.params.id],
-        ['Expiration Time', transaction.time],
+        ['Version', props.match.params.id],
+        ['Expiration Time', formatDateTime(transaction.time)],
         ['Source', (<Link href={`/address/${transaction.from}`}>{transaction.from}</Link>)],
         ['Destination', (<Link href={`/address/${transaction.to}`}>{transaction.to}</Link>)],
         ['Type', transaction.type],
@@ -28,6 +29,7 @@ const TransactionDetail: React.SFC<RouteComponentProps<Identifiable>> = ((props)
         ['Sequence Number', transaction.sequence],
         ['Public Key', transaction.publicKey]
     ]
+    console.log('tx', transaction)
 
     return (
         <Container>

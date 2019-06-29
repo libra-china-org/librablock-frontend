@@ -1,7 +1,7 @@
 import React from 'react';
 import Transaction from "../models/Transaction"
 import { TableRow, TableCell, Link, TableHead, createStyles, makeStyles, withStyles, Typography } from '@material-ui/core';
-
+import { formatDateTime } from '../utils/format'
 
 interface CustomTableRowProps {
     transcation: Transaction,
@@ -62,7 +62,7 @@ export const CustomTableRow: React.SFC<CustomTableRowProps> = (x) => {
             </TableCell> 
             
             <TableCell>
-                <Typography align="center" variant="body2">{x.transcation.time}</Typography>
+                <Typography align="center" variant="body2">{formatDateTime(x.transcation.time)}</Typography>
             </TableCell>
             
             <TableCell>
