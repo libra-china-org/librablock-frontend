@@ -99,7 +99,7 @@ const Index: React.FC = () => {
   
                 <TableBody>
                   {trancations.map(row => (
-                    <CustomTableRow transcation={row}/>
+                    <CustomTableRow transcation={row} key={row.version}/>
                   ))}
                 </TableBody>
               </Table>
