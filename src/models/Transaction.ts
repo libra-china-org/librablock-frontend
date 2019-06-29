@@ -9,6 +9,7 @@ class Transaction {
     gasPrice: number
     maxGas: number
     sequence: number
+    observedTime: string
     
     constructor( data: any ) {
         this.version = data['version'] || 0
@@ -21,6 +22,7 @@ class Transaction {
         this.sequence = data['sequence_number'] || 0
         this.gasPrice = data['gas_price'] || 0
         this.maxGas = data['max_gas'] || 0
+        this.observedTime = data['created_at'] || 0
     }
 
     displayAmount(): string {

@@ -14,6 +14,9 @@ import API from '../utils/api';
 import Transaction from "../models/Transaction";
 import {CustomTableRow, CustomTableHead} from "./CustomTable";
 import LiveTps from './LiveTps';
+import { TpsData, versionToLiveTPS } from '../utils/tps'
+
+const timeout = (ms: number) => new Promise(res => setTimeout(res, ms));
 
 const styles = makeStyles(theme => ({
     summary_title: {
@@ -35,10 +38,14 @@ const Index: React.FC = () => {
     const [trancations, setTrancations] = useState<Transaction[]>([]);
   
     useEffect(() => {
-        
-        API.fetchVersions().then((x) => {
-            setTrancations(x)
-        })
+        async function loadDataLoop() {
+          while (true) {
+            const txs = await API.fetchVersions(50);
+            setTrancations(txs);
+            await timeout(1000);
+          }
+        }
+        loadDataLoop();
     }, trancations)
   
     return (
@@ -86,7 +93,7 @@ const Index: React.FC = () => {
 
           <Grid xs={12}>
             <Card>
-              <LiveTps></LiveTps>
+              <LiveTps data={versionToLiveTPS(trancations)}></LiveTps>
             </Card>
           </Grid>
         </Box>
@@ -100,7 +107,7 @@ const Index: React.FC = () => {
                 <CustomTableHead/>
   
                 <TableBody>
-                  {trancations.map(row => (
+                  {trancations.slice(0, 20).map(row => (
                     <CustomTableRow transcation={row} key={row.version}/>
                   ))}
                 </TableBody>
