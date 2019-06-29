@@ -1,6 +1,7 @@
 import React from 'react';
+import ReactGA from 'react-ga';
 import Index from './components/Index'
-import { BrowserRouter as Router, Route,  match, RouteComponentProps } from "react-router-dom";
+import { BrowserRouter, Route, match, RouteComponentProps } from "react-router-dom";
 import TextField from '@material-ui/core/TextField';
 import Toolbar from '@material-ui/core/Toolbar';
 import AppBar from '@material-ui/core/AppBar';
@@ -11,11 +12,14 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { makeStyles, MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { Box } from '@material-ui/core';
 import Container from '@material-ui/core/Container';
+import PropTypes from 'prop-types';
 
 import TransactionDetail from './components/TransactionDetail';
 import AddressDetail from './components/AddressDetail'
 
 import ImgLogo from './assets/librablock.png';
+
+ReactGA.initialize('UA-39767786-5');
 
 const theme = createMuiTheme({
   palette: {
@@ -99,52 +103,50 @@ const App: React.FC = () => {
   return (
     <MuiThemeProvider theme={theme}>
       <CssBaseline />
-      <Router>
-        <AppBar position="static" color="default" elevation={0} className={classes.appBar}>
-          <Toolbar className={classes.toolbar} style={{padding: '0px 30px'}}>
-            <Link className={classes.toolbarTitle} href="/" underline='none'>
-              <img src={ImgLogo} style={{height: 50}} />
-              <span className={classes.toolbarLogoTitle}>LibraBlock</span>
-            </Link>
-            <nav>
-              <Link variant="button" color="primary" href="#" className={classes.link} underline='none'>
-              Home
+      <BrowserRouter>
+          <AppBar position="static" color="default" elevation={0} className={classes.appBar}>
+            <Toolbar className={classes.toolbar} style={{padding: '0px 30px'}}>
+              <Link className={classes.toolbarTitle} href="/" underline='none'>
+                <img src={ImgLogo} style={{height: 50}} />
+                <span className={classes.toolbarLogoTitle}>LibraBlock</span>
               </Link>
-              <Fab variant="extended" color="primary" aria-label="Add" className={classes.libraChinaButton}>
-                LibraChina
-              </Fab>
-            </nav>
-          </Toolbar>
-        </AppBar>
+              <nav>
+                <Link variant="button" color="primary" href="#" className={classes.link} underline='none'>
+                Home
+                </Link>
+                <Fab variant="extended" color="primary" aria-label="Add" className={classes.libraChinaButton}>
+                  LibraChina
+                </Fab>
+              </nav>
+            </Toolbar>
+          </AppBar>
 
-        <Container>
+          <Container>
 
-          <Box  style={{marginTop: '5px'}}>
-            <form className={classes.container} noValidate autoComplete="off" onSubmit={submit}>
-              <TextField id="filled-full-width" label="Query" placeholder="Search by address or tx versio"
-                fullWidth margin="normal" variant="filled" InputLabelProps={{shrink: true,}} onChange={textfieldOnChanged}/>
-            </form>
-          </Box>
+            <Box  style={{marginTop: '5px'}}>
+              <form className={classes.container} noValidate autoComplete="off" onSubmit={submit}>
+                <TextField id="filled-full-width" label="Query" placeholder="Search by address or tx versio"
+                  fullWidth margin="normal" variant="filled" InputLabelProps={{shrink: true,}} onChange={textfieldOnChanged}/>
+              </form>
+            </Box>
 
-          <Route exact path="/" component={Index} />
-          <Route path="/version/:id" component={TransactionDetail} />
-          <Route path="/address/:id" component={AddressDetail} />
-
-
-          <Box height="100px" marginTop="20px">
-            <Typography variant="body2" color="textSecondary" align="center">
-              {'Built with ♥ by the '}
-              <Link color="inherit" href="https://hashforests.com/">
-              HashForests
-              </Link>
-              {' team.'}
-            </Typography>
-          </Box>
+            <Route exact path="/" component={Index} />
+            <Route path="/version/:id" component={TransactionDetail} />
+            <Route path="/address/:id" component={AddressDetail} />
 
 
-        </Container>
+            <Box height="100px" marginTop="20px">
+              <Typography variant="body2" color="textSecondary" align="center">
+                {'Built with ♥ by the '}
+                <Link color="inherit" href="https://hashforests.com/">
+                HashForests
+                </Link>
+                {' team.'}
+              </Typography>
+            </Box>
 
-      </Router>
+          </Container>
+      </BrowserRouter>
     </MuiThemeProvider>
   );
 }
