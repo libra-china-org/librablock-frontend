@@ -11,7 +11,6 @@ import { makeStyles, MuiThemeProvider, createMuiTheme } from '@material-ui/core/
 import { Box } from '@material-ui/core';
 import Container from '@material-ui/core/Container';
 
-import yellow from '@material-ui/core/colors/deepOrange';
 import TransactionDetail from './components/TransactionDetail';
 import AddressDetail from './components/AddressDetail'
 
@@ -56,7 +55,26 @@ const styles = makeStyles(theme => ({
 
 const App: React.FC = () => {
   const classes = styles();
-  
+  let text: string
+  const submit = (event: any)=>{
+    event.preventDefault();
+
+    let version = parseInt(text)
+    if (isNaN(version)) {
+      if (text.length == 64) {
+        window.location.href = `/address/${text}`  
+      } else {
+        alert("Illegal address or tx version")
+      }
+    } else {
+      window.location.href = `/version/${version}`
+    }
+  }
+
+  const textfieldOnChanged = (event: any) => {
+    text = event.target.value
+  }
+
   return (
     <MuiThemeProvider theme={theme}>
       <CssBaseline />
@@ -82,9 +100,9 @@ const App: React.FC = () => {
           </AppBar>
 
           <Box  style={{marginTop: '5px'}}>
-            <form className={classes.container} noValidate autoComplete="off">
+            <form className={classes.container} noValidate autoComplete="off" onSubmit={submit}>
               <TextField id="filled-full-width" label="Query" placeholder="Search by address or tx versio"
-                fullWidth margin="normal" variant="filled" InputLabelProps={{shrink: true,}} />
+                fullWidth margin="normal" variant="filled" InputLabelProps={{shrink: true,}} onChange={textfieldOnChanged}/>
             </form>
           </Box>
 
