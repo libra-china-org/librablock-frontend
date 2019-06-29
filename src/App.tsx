@@ -8,8 +8,9 @@ import AppBar from '@material-ui/core/AppBar';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 import Fab from '@material-ui/core/Fab';
+import InputBase from '@material-ui/core/InputBase';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import { makeStyles, MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { fade, makeStyles, MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { Box } from '@material-ui/core';
 import Container from '@material-ui/core/Container';
 import PropTypes from 'prop-types';
@@ -17,6 +18,7 @@ import PropTypes from 'prop-types';
 import TransactionDetail from './components/TransactionDetail';
 import AddressDetail from './components/AddressDetail'
 
+import SearchIcon from '@material-ui/icons/Search';
 import ImgLogo from './assets/librablock.png';
 
 ReactGA.initialize('UA-39767786-5');
@@ -52,6 +54,8 @@ const styles = makeStyles(theme => ({
   },  
   toolbar: {
     flexWrap: 'wrap',
+    height: 70,
+    padding: '0px 30px'
   },
   toolbarTitle: {
     flexGrow: 1,
@@ -61,6 +65,45 @@ const styles = makeStyles(theme => ({
     top: -16,
     fontSize: 20,
     marginLeft: 12
+  },
+  search: {
+    position: 'relative',
+    borderBottom: 'solid rgb(66, 49, 140) 2px',
+    marginRight: 40,
+    // borderRadius: theme.shape.borderRadius,
+    // backgroundColor: fade(theme.palette.common.white, 0.15),
+    '&:hover': {
+      // backgroundColor: fade(theme.palette.common.white, 0.25),
+    },
+    marginLeft: 0,
+    width: '100%',
+    [theme.breakpoints.up('sm')]: {
+      marginLeft: theme.spacing(1),
+      width: 'auto',
+    },
+  },
+  searchIcon: {
+    width: theme.spacing(7),
+    height: '100%',
+    position: 'absolute',
+    pointerEvents: 'none',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  inputRoot: {
+    color: 'inherit',
+  },
+  inputInput: {
+    padding: theme.spacing(1, 1, 1, 7),
+    transition: theme.transitions.create('width'),
+    width: '100%',
+    [theme.breakpoints.up('sm')]: {
+      width: 160,
+      '&:focus': {
+        width: 260,
+      },
+    },
   },
   libraChinaButton : {
     boxShadow: 'none',
@@ -105,11 +148,27 @@ const App: React.FC = () => {
       <CssBaseline />
       <BrowserRouter>
           <AppBar position="static" color="default" elevation={0} className={classes.appBar}>
-            <Toolbar className={classes.toolbar} style={{padding: '0px 30px'}}>
+            <Toolbar className={classes.toolbar}>
               <Link className={classes.toolbarTitle} href="/" underline='none'>
                 <img src={ImgLogo} style={{height: 50}} />
                 <span className={classes.toolbarLogoTitle}>LibraBlock</span>
               </Link>
+              <div className={classes.search}>
+                <div className={classes.searchIcon}>
+                  <SearchIcon />
+                </div>
+                <form className={classes.container} noValidate autoComplete="off" onSubmit={submit}>
+                  <InputBase
+                    placeholder="Account, tx version…"
+                    classes={{
+                      root: classes.inputRoot,
+                      input: classes.inputInput,
+                    }}
+                    inputProps={{ 'aria-label': 'Search' }}
+                    onChange={textfieldOnChanged}
+                  />
+                </form>
+              </div>
               <nav>
                 <Link variant="button" color="primary" href="#" className={classes.link} underline='none'>
                 Home
@@ -121,14 +180,7 @@ const App: React.FC = () => {
             </Toolbar>
           </AppBar>
 
-          <Container>
-
-            <Box  style={{marginTop: '5px'}}>
-              <form className={classes.container} noValidate autoComplete="off" onSubmit={submit}>
-                <TextField id="filled-full-width" label="Query" placeholder="Search by address or tx versio"
-                  fullWidth margin="normal" variant="filled" InputLabelProps={{shrink: true,}} onChange={textfieldOnChanged}/>
-              </form>
-            </Box>
+          <Container style={{marginTop: 40}}>
 
             <Route exact path="/" component={Index} />
             <Route path="/version/:id" component={TransactionDetail} />
