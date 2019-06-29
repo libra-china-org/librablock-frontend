@@ -21,24 +21,26 @@ interface CustomTableRowProps {
 export const CustomTableHead: React.FC = () => {
     return (
         <TableHead>
-            <TableCell>
-                <Typography align="center"> <b> Version <br /> (TX ID) </b> </Typography>
-            </TableCell>
+            <TableRow>
+                <TableCell>
+                    <Typography align="center"> <b> Version <br /> (TX ID) </b> </Typography>
+                </TableCell>
 
-            <TableCell>
-                <Typography align="center"> <b> Expiration <br /> Date (UTC) </b></Typography>
-            </TableCell>
+                <TableCell>
+                    <Typography align="center"> <b> Expiration <br /> Date (UTC) </b></Typography>
+                </TableCell>
 
-            <TableCell>
-                <Typography align="center"> <b>Type</b></Typography>
-            </TableCell>
+                <TableCell>
+                    <Typography align="center"> <b>Type</b></Typography>
+                </TableCell>
 
-            <TableCell>
-                <Typography align="center"><b>From → To</b></Typography>
-            </TableCell>
-            <TableCell>
-                <Typography align="center"><b>Amount</b></Typography>
-            </TableCell>
+                <TableCell>
+                    <Typography align="center"><b>From → To</b></Typography>
+                </TableCell>
+                <TableCell>
+                    <Typography align="center"><b>Amount</b></Typography>
+                </TableCell>
+            </TableRow>
         </TableHead>
     )
 }
