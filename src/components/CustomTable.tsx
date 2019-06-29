@@ -55,6 +55,12 @@ const StyledTableRow = withStyles(theme => ({
 }))(TableRow);
 
 export const CustomTableRow: React.SFC<CustomTableRowProps> = (x) => {
+    const txDesc: {[name: string]: string} = {
+        'peer_to_peer_transaction': 'Transfer',
+        'create_account_transaction': 'NewAccount',
+        'mint_transaction': 'Mint',
+        'rotate_authentication_key_transaction': 'ChangeKey'
+    };
     return (
         <StyledTableRow>
             <TableCell>
@@ -68,7 +74,7 @@ export const CustomTableRow: React.SFC<CustomTableRowProps> = (x) => {
             </TableCell>
             
             <TableCell>
-                <Typography align="center" variant="body2">{x.transcation.type == 'mint_transaction' ? '⛏️' : '💵'}</Typography>
+                <Typography align="center" variant="body2">{txDesc[x.transcation.type]}</Typography>
             </TableCell>
             
             <TableCell>
