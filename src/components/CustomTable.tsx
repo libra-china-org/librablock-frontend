@@ -2,6 +2,7 @@ import React from 'react';
 import Transaction from "../models/Transaction"
 import { TableRow, TableCell, Link, TableHead, createStyles, makeStyles, withStyles, Typography } from '@material-ui/core';
 import { formatDateTime } from '../utils/format'
+import { Link as RouterLink } from 'react-router-dom';
 
 interface CustomTableRowProps {
     transcation: Transaction,
@@ -65,7 +66,7 @@ export const CustomTableRow: React.SFC<CustomTableRowProps> = (x) => {
         <StyledTableRow>
             <TableCell>
                 <Typography align="center" variant="body2">
-                    <Link href={`/version/${x.transcation.version}`}>{x.transcation.version} </Link> 
+                    <Link component={RouterLink} to={`/version/${x.transcation.version}`}>{x.transcation.version} </Link> 
                 </Typography>
             </TableCell> 
             
@@ -79,8 +80,8 @@ export const CustomTableRow: React.SFC<CustomTableRowProps> = (x) => {
             
             <TableCell>
                 <Typography variant="body2">
-                    <Link href={`/address/${x.transcation.from}`}>{x.transcation.from} </Link> → <br />
-                    <Link href={`/address/${x.transcation.to}`}>{x.transcation.to} </Link> 
+                    <Link component={RouterLink} to={`/address/${x.transcation.from}`}>{x.transcation.from} </Link> → <br />
+                    <Link component={RouterLink} to={`/address/${x.transcation.to}`}>{x.transcation.to} </Link> 
                 </Typography> 
             </TableCell>
                         

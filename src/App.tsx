@@ -7,6 +7,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import AppBar from '@material-ui/core/AppBar';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
+import { Link as RouterLink } from 'react-router-dom';
 import Fab from '@material-ui/core/Fab';
 import InputBase from '@material-ui/core/InputBase';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -149,7 +150,7 @@ const App: React.FC = () => {
       <BrowserRouter>
           <AppBar position="static" color="default" elevation={0} className={classes.appBar}>
             <Toolbar className={classes.toolbar}>
-              <Link className={classes.toolbarTitle} href="/" underline='none'>
+              <Link component={RouterLink} className={classes.toolbarTitle} to="/" underline='none'>
                 <img src={ImgLogo} style={{height: 50}} />
                 <span className={classes.toolbarLogoTitle}>LibraBlock</span>
               </Link>
@@ -170,8 +171,8 @@ const App: React.FC = () => {
                 </form>
               </div>
               <nav>
-                <Link variant="button" color="primary" href="#" className={classes.link} underline='none'>
-                Home
+                <Link component={RouterLink} variant="button" color="primary" to="/" className={classes.link} underline='none'>
+                  Home
                 </Link>
                 <Fab variant="extended" color="primary" aria-label="Add" className={classes.libraChinaButton} href="https://libra-china.org">
                   LibraChina

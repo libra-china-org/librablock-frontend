@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Typography, Table, TableHead, TableRow, TableCell, TableBody, Box, Link } from '@material-ui/core';
-import { RouteComponentProps } from "react-router-dom";
+import { RouteComponentProps, Link as RouterLink } from "react-router-dom";
 import Transcation from "../models/Transaction"
 import API from '../utils/api';
 import { formatDateTime } from '../utils/format'
@@ -20,8 +20,8 @@ const TransactionDetail: React.SFC<RouteComponentProps<Identifiable>> = ((props)
     let arr = [
         ['Version', props.match.params.id],
         ['Expiration Time', formatDateTime(transaction.time)],
-        ['Source', (<Link href={`/address/${transaction.from}`}>{transaction.from}</Link>)],
-        ['Destination', (<Link href={`/address/${transaction.to}`}>{transaction.to}</Link>)],
+        ['Source', (<Link component={RouterLink} to={`/address/${transaction.from}`}>{transaction.from}</Link>)],
+        ['Destination', (<Link component={RouterLink} to={`/address/${transaction.to}`}>{transaction.to}</Link>)],
         ['Type', transaction.type],
         ['Amount Transferred', transaction.displayAmount() + ' Libra'],
         ['Gas Price', transaction.gasPrice],
