@@ -1,8 +1,6 @@
 import React from 'react';
-import ReactGA from 'react-ga';
 import Index from './components/Index'
 import { BrowserRouter, Route, match, RouteComponentProps } from "react-router-dom";
-import TextField from '@material-ui/core/TextField';
 import Toolbar from '@material-ui/core/Toolbar';
 import AppBar from '@material-ui/core/AppBar';
 import Typography from '@material-ui/core/Typography';
@@ -14,15 +12,13 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { fade, makeStyles, MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { Box } from '@material-ui/core';
 import Container from '@material-ui/core/Container';
-import PropTypes from 'prop-types';
 
+import GAListener from './components/GAListener'
 import TransactionDetail from './components/TransactionDetail';
 import AddressDetail from './components/AddressDetail'
 
 import SearchIcon from '@material-ui/icons/Search';
 import ImgLogo from './assets/librablock.png';
-
-ReactGA.initialize('UA-39767786-5');
 
 const theme = createMuiTheme({
   palette: {
@@ -148,6 +144,7 @@ const App: React.FC = () => {
     <MuiThemeProvider theme={theme}>
       <CssBaseline />
       <BrowserRouter>
+        <GAListener>
           <AppBar position="static" color="default" elevation={0} className={classes.appBar}>
             <Toolbar className={classes.toolbar}>
               <Link component={RouterLink} className={classes.toolbarTitle} to="/" underline='none'>
@@ -199,6 +196,7 @@ const App: React.FC = () => {
             </Box>
 
           </Container>
+        </GAListener>
       </BrowserRouter>
     </MuiThemeProvider>
   );
