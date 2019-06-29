@@ -10,9 +10,10 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import { makeStyles} from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import API from '../utils/api'
-import Transaction from "../models/Transaction"
-import {CustomTableRow, CustomTableHead} from "./CustomTable"
+import API from '../utils/api';
+import Transaction from "../models/Transaction";
+import {CustomTableRow, CustomTableHead} from "./CustomTable";
+import LiveTps from './LiveTps';
 
 const styles = makeStyles(theme => ({
     summary_title: {
@@ -42,10 +43,13 @@ const Index: React.FC = () => {
   
     return (
       <Box marginTop="20px">
+        <Typography style={{marginBottom: 20}} color="primary" variant="h4" align="center">
+          Live TPS
+        </Typography>
         <Box className={classes.flex_row}>
-          <Grid xs={4}>
+          {/* <Grid xs={4}>
             
-              <Typography color="primary" variant="h5" align="center" className={classes.summary_title}>Summary</Typography>
+            <Typography color="primary" variant="h5" align="center" className={classes.summary_title}>Summary</Typography>
             <Card>
               <Box className={classes.flex_row} marginTop="10px">
                 <Grid xs={6} className={classes.flex_column}>
@@ -77,14 +81,12 @@ const Index: React.FC = () => {
                 </Grid>
               </Box>
             </Card>
-          </Grid>
+          </Grid> */}
   
-  
-          <Grid style={{marginLeft:"20px"}} xs={8}>
+
+          <Grid xs={12}>
             <Card>
-              <Typography>
-                Live Transcations
-              </Typography>
+              <LiveTps></LiveTps>
             </Card>
           </Grid>
         </Box>
