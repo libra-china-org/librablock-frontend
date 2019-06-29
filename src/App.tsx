@@ -83,7 +83,7 @@ const App: React.FC = () => {
 
           <Box  style={{marginTop: '5px'}}>
             <form className={classes.container} noValidate autoComplete="off">
-              <TextField id="filled-full-width" label="Label" placeholder="请输入地址或交易id"
+              <TextField id="filled-full-width" label="Query" placeholder="Search by address or tx versio"
                 fullWidth margin="normal" variant="filled" InputLabelProps={{shrink: true,}} />
             </form>
           </Box>
