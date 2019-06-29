@@ -49,7 +49,7 @@ const Index: React.FC = () => {
     }, trancations)
   
     return (
-      <Box marginTop="20px">
+      <Box marginTop="40px">
         <Typography style={{marginBottom: 20}} color="primary" variant="h4" align="center">
           Live TPS
         </Typography>
@@ -98,7 +98,7 @@ const Index: React.FC = () => {
           </Grid>
         </Box>
   
-        <Box marginTop="20px">
+        <Box marginTop="40px">
           <Typography style={{marginTop:"20px",marginBottom:"20px"}} color="primary" variant="h4" align="center">All Transcations</Typography>
 
           <Card>

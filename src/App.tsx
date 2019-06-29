@@ -6,6 +6,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import AppBar from '@material-ui/core/AppBar';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
+import Fab from '@material-ui/core/Fab';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { makeStyles, MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { Box } from '@material-ui/core';
@@ -14,12 +15,17 @@ import Container from '@material-ui/core/Container';
 import TransactionDetail from './components/TransactionDetail';
 import AddressDetail from './components/AddressDetail'
 
+import ImgLogo from './assets/librablock.png';
+
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: '#f0b90b'
+      main: 'rgb(66, 49, 140)'
     },
-    type: 'dark'
+    secondary: {
+      main: '#1e4855'
+    },
+    type: 'light'
   }
 });
 
@@ -32,6 +38,9 @@ const styles = makeStyles(theme => ({
     },
     li: {
       listStyle: 'none',
+    },
+    a: {
+      textDecoration: 'none',
     }
   },
   appBar: {
@@ -42,6 +51,18 @@ const styles = makeStyles(theme => ({
   },
   toolbarTitle: {
     flexGrow: 1,
+  },
+  toolbarLogoTitle: {
+    position: 'relative',
+    top: -16,
+    fontSize: 20,
+    marginLeft: 12
+  },
+  libraChinaButton : {
+    boxShadow: 'none',
+    marginLeft: 20,
+    paddingLeft: 30,
+    paddingRight: 30,
   },
   link: {
     margin: theme.spacing(1, 1.5),
@@ -79,25 +100,24 @@ const App: React.FC = () => {
     <MuiThemeProvider theme={theme}>
       <CssBaseline />
       <Router>
-        <Container>
-
-          <AppBar position="static" color="default" elevation={0} className={classes.appBar}>
-            <Toolbar className={classes.toolbar} style={{padding: '0px 30px'}}>
-              <Link variant="button" href="/">
-              <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle}>
-                LibraBlock
-              </Typography>
+        <AppBar position="static" color="default" elevation={0} className={classes.appBar}>
+          <Toolbar className={classes.toolbar} style={{padding: '0px 30px'}}>
+            <Link className={classes.toolbarTitle} href="/" underline='none'>
+              <img src={ImgLogo} style={{height: 50}} />
+              <span className={classes.toolbarLogoTitle}>LibraBlock</span>
+            </Link>
+            <nav>
+              <Link variant="button" color="primary" href="#" className={classes.link} underline='none'>
+              Home
               </Link>
-              <nav>
-                <Link variant="button" color="textPrimary" href="#" className={classes.link}>
-                Home
-                </Link>
-                <Link variant="button" color="textPrimary" href="#" className={classes.link}>
+              <Fab variant="extended" color="primary" aria-label="Add" className={classes.libraChinaButton}>
                 LibraChina
-                </Link>
-              </nav>
-            </Toolbar>
-          </AppBar>
+              </Fab>
+            </nav>
+          </Toolbar>
+        </AppBar>
+
+        <Container>
 
           <Box  style={{marginTop: '5px'}}>
             <form className={classes.container} noValidate autoComplete="off" onSubmit={submit}>

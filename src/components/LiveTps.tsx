@@ -18,7 +18,7 @@ class Chart extends React.Component<IProps, IState> {
 
   render() { return (
     <React.Fragment>
-      <FlexibleWidthXYPlot xType="ordinal" height={300} margin={{left: 80, right: 80}}>
+      <FlexibleWidthXYPlot xType="ordinal" height={300} margin={{left: 80, right: 80, top: 40, bottom: 60}}>
         <XAxis />
         <YAxis />
         <LineSeries data={this.props.data as any[]} animation curve={"curveMonotoneX"} />
