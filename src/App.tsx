@@ -114,7 +114,7 @@ const App: React.FC = () => {
                 <Link variant="button" color="primary" href="#" className={classes.link} underline='none'>
                 Home
                 </Link>
-                <Fab variant="extended" color="primary" aria-label="Add" className={classes.libraChinaButton}>
+                <Fab variant="extended" color="primary" aria-label="Add" className={classes.libraChinaButton} href="https://libra-china.org">
                   LibraChina
                 </Fab>
               </nav>
