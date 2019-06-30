@@ -124,15 +124,15 @@ const App: React.FC = () => {
   const submit = (event: any)=>{
     event.preventDefault();
 
-    let version = parseInt(text)
-    if (isNaN(version)) {
-      if (text.length == 64) {
-        window.location.href = `/address/${text}`  
-      } else {
-        alert("Illegal address or tx version")
-      }
+    if (text.length == 64) {
+      window.location.href = `/address/${text}`  
     } else {
-      window.location.href = `/version/${version}`
+      let version = Number(text)
+      if (isNaN(version)) {
+        alert("Illegal address or tx version")
+      } else {
+        window.location.href = `/version/${version}`
+      }
     }
   }
 
