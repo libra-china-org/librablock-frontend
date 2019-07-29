@@ -2,7 +2,7 @@ import axios from "axios"
 import Transaction from "../models/Transaction"
 import Account from "../models/Account"
 
-const host = "http://127.0.0.1:8080"
+const host = "https://api.librablock.io"
 
 class API {
     
