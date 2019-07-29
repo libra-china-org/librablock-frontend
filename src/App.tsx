@@ -13,12 +13,25 @@ import { fade, makeStyles, MuiThemeProvider, createMuiTheme } from '@material-ui
 import { Box } from '@material-ui/core';
 import Container from '@material-ui/core/Container';
 
+import {addLocaleData,IntlProvider,FormattedMessage} from 'react-intl';
+import zh from 'react-intl/locale-data/zh';
+import en from 'react-intl/locale-data/en';
+import zh_CN from './locale/zh_CN';
+import en_US from './locale/en_US';
+
 import GAListener from './components/GAListener'
 import TransactionDetail from './components/TransactionDetail';
 import AddressDetail from './components/AddressDetail'
 
 import SearchIcon from '@material-ui/icons/Search';
 import ImgLogo from './assets/librablock.png';
+
+let messages : {[locale: string]: object} = {};
+messages["zh-CN"] = zh_CN;
+messages["en-US"] = en_US;
+const languages = navigator.languages;
+const currentLang = languages[0];
+addLocaleData([...zh,...en]);
 
 const theme = createMuiTheme({
   palette: {
@@ -143,61 +156,63 @@ const App: React.FC = () => {
   return (
     <MuiThemeProvider theme={theme}>
       <CssBaseline />
-      <BrowserRouter>
-        <GAListener>
-          <AppBar position="static" color="default" elevation={0} className={classes.appBar}>
-            <Toolbar className={classes.toolbar}>
-              <Link component={RouterLink} className={classes.toolbarTitle} to="/" underline='none'>
-                <img src={ImgLogo} style={{height: 50}} />
-                <span className={classes.toolbarLogoTitle}>LibraBlock</span>
-              </Link>
-              <div className={classes.search}>
-                <div className={classes.searchIcon}>
-                  <SearchIcon />
+      <IntlProvider locale={currentLang} messages={messages[currentLang]}>
+        <BrowserRouter>
+          <GAListener>
+            <AppBar position="static" color="default" elevation={0} className={classes.appBar}>
+              <Toolbar className={classes.toolbar}>
+                <Link component={RouterLink} className={classes.toolbarTitle} to="/" underline='none'>
+                  <img src={ImgLogo} style={{height: 50}} />
+                  <span className={classes.toolbarLogoTitle}>LibraBlock</span>
+                </Link>
+                <div className={classes.search}>
+                  <div className={classes.searchIcon}>
+                    <SearchIcon />
+                  </div>
+                  <form className={classes.container} noValidate autoComplete="off" onSubmit={submit}>
+                    <InputBase
+                      placeholder="Account, tx version…"
+                      classes={{
+                        root: classes.inputRoot,
+                        input: classes.inputInput,
+                      }}
+                      inputProps={{ 'aria-label': 'Search' }}
+                      onChange={textfieldOnChanged}
+                    />
+                  </form>
                 </div>
-                <form className={classes.container} noValidate autoComplete="off" onSubmit={submit}>
-                  <InputBase
-                    placeholder="Account, tx version…"
-                    classes={{
-                      root: classes.inputRoot,
-                      input: classes.inputInput,
-                    }}
-                    inputProps={{ 'aria-label': 'Search' }}
-                    onChange={textfieldOnChanged}
-                  />
-                </form>
-              </div>
-              <nav>
-                <Link component={RouterLink} variant="button" color="primary" to="/" className={classes.link} underline='none'>
-                  Home
-                </Link>
-                <Fab variant="extended" color="primary" aria-label="Add" className={classes.libraChinaButton} href="https://libra-china.org">
-                  LibraChina
-                </Fab>
-              </nav>
-            </Toolbar>
-          </AppBar>
+                <nav>
+                  <Link component={RouterLink} variant="button" color="primary" to="/" className={classes.link} underline='none'>
+                    Home
+                  </Link>
+                  <Fab variant="extended" color="primary" aria-label="Add" className={classes.libraChinaButton} href="https://libra-china.org">
+                    LibraChina
+                  </Fab>
+                </nav>
+              </Toolbar>
+            </AppBar>
 
-          <Container style={{marginTop: 40}}>
+            <Container style={{marginTop: 40}}>
 
-            <Route exact path="/" component={Index} />
-            <Route path="/version/:id" component={TransactionDetail} />
-            <Route path="/address/:id" component={AddressDetail} />
+              <Route exact path="/" component={Index} />
+              <Route path="/version/:id" component={TransactionDetail} />
+              <Route path="/address/:id" component={AddressDetail} />
 
 
-            <Box height="100px" marginTop="20px">
-              <Typography variant="body2" color="textSecondary" align="center">
-                {'Built with ♥ by the '}
-                <Link color="inherit" href="https://hashforests.com/">
-                HashForests
-                </Link>
-                {' team.'}
-              </Typography>
-            </Box>
+              <Box height="100px" marginTop="20px">
+                <Typography variant="body2" color="textSecondary" align="center">
+                  {'Built with ♥ by the '}
+                  <Link color="inherit" href="https://hashforests.com/">
+                  HashForests
+                  </Link>
+                  {' team.'}
+                </Typography>
+              </Box>
 
-          </Container>
-        </GAListener>
-      </BrowserRouter>
+            </Container>
+          </GAListener>
+        </BrowserRouter>
+      </IntlProvider>
     </MuiThemeProvider>
   );
 }
