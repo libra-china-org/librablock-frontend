@@ -14,7 +14,9 @@ import API from '../utils/api';
 import Transaction from "../models/Transaction";
 import {CustomTableRow, CustomTableHead} from "./CustomTable";
 import LiveTps from './LiveTps';
-import { TpsData, versionToLiveTPS } from '../utils/tps'
+import { TpsData, versionToLiveTPS } from '../utils/tps';
+
+import { FormattedMessage } from 'react-intl';
 
 const timeout = (ms: number) => new Promise(res => setTimeout(res, ms));
 
@@ -51,7 +53,7 @@ const Index: React.FC = () => {
     return (
       <Box marginTop="40px">
         <Typography style={{marginBottom: 20}} color="primary" variant="h4" align="center">
-          Live TPS
+          <FormattedMessage id="livetps"/>
         </Typography>
         <Box className={classes.flex_row}>
           {/* <Grid xs={4}>
@@ -100,7 +102,7 @@ const Index: React.FC = () => {
   
         <Box marginTop="40px">
           <Typography style={{marginTop:"20px",marginBottom:"20px"}} color="primary" variant="h4" align="center">
-            Latest Transactions
+            <FormattedMessage id="latestTx"/>
           </Typography>
 
           <Card>
